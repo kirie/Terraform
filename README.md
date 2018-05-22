@@ -1,2 +1,3 @@
 # Terraform
-Terraform Infrastructure
+
+Infrastructure as Code using Terraform
