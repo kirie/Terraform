@@ -1,3 +1,5 @@
+variable "cidrs" { default = [] }
+
 provider "aws" {
   access_key = "${var.access_key}"
   secret_key = "${var.secret_key}"
@@ -13,4 +15,12 @@ resource "aws_eip" "ip" {
   instance = "${aws_instance.kirie.id}"
 }
 
-variable "cidrs" { default = [] }
+output "ip" {
+  value = "${aws_eip.ip.public_ip}"
+}
+
+module "consul" {
+  source = ""
+  aws_region  = "us-east-1"
+  num_servers = "3"
+}
